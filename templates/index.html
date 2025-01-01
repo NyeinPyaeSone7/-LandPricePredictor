@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Area to Price Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            
+            margin-bottom: 60px; /* Adds space between the heading and the content below */
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto; /* Increased margin for more space between the form and the table */
+        }
+        th, td {
+            border: 2px solid black; /* Strong border lines */
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Light background for even rows */
+        }
+    </style>
+</head>
+<body>
+    <h1>Land Area to Price Calculator (Patheingyi)</h1>
+    <form method="POST">
+        <label for="land_area">Enter Land Area (sq. ft.) : </label>
+        <input type="text" id="land_area" name="land_area" required>
+        <button type="submit">Calculate Price</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Land Area</th>
+            <td>300</td>
+            <td>400</td>
+            <td>500</td>
+            <td>550</td>
+            <td>600</td>
+            <td>650</td>
+            <td>700</td>
+            <td>850</td>
+            <td>900</td>
+            <td>1200</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>7200</td>
+            <td>8500</td>
+            <td>9000</td>
+            <td>9800</td>
+            <td>10500</td>
+            <td>11000</td>
+            <td>12800</td>
+            <td>14100</td>
+            <td>14000</td>
+            <td>?</td>
+        </tr>
+    </table>
+    
+    {% if price is not none %}
+        <div class="result">
+            {% if price == "Invalid input! Please enter a valid number." %}
+                <p style="color: red;">{{ price }}</p>
+            {% else %}
+                <p>The predicted price for a land area of {{ request.form['land_area'] }} sq. ft. is ${{ price|round(2) }}</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
